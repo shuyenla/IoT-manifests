@@ -29,7 +29,7 @@ spec:
         app: wil-playground
     spec:
       containers:
-        - name: wil42-playground
+        - name: wil-playground-container
           image: wil42/playground:v1
           ports:
             - containerPort: 8888
