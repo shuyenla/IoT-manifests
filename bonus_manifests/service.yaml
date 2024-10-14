@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wil-playground-svc
+  namespace: dev
+spec:
+  type: LoadBalancer
+  selector:
+    app: wil-playground
+  ports:
+    - protocol: TCP
+      port: 8888
+      targetPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-svc
+  namespace: gitlab
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30000
+  selector:
+    app: gitlab
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server-svc
+  namespace: argocd
+spec:
+  type: NodePort
+  ports:
+    - port: 443
+      targetPort: 8080
+      nodePort: 30001
+  selector:
+    app: argocd-server
